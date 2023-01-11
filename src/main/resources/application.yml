@@ -2,16 +2,30 @@ server:
   port: 8081
 example:
   rabbitmq:
-    host: 127.0.0.1
+    host: localhost:5672
     port: 5672
     username: guest
     password: guest
 spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL57InnoDBDialect
+    ddl-auto: none
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    open-in-view: false
   datasource:
     url: jdbc:mysql://localhost:3306/example?useSSL=false&serverTimezone=UTC
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    clean-on-validation-error: false
+    sql-migration-prefix: V
+    sql-migration-suffixes: .sql
+    locations: classpath:db/migration
   quartz:
     jdbc:
       initialize-schema: always
@@ -35,6 +49,8 @@ spring:
           threadCount: 10
           threadPriority: 5
           threadsInheritContextClassLoaderOfInitializingThread: true
-
+  messages:
+    basename: i18n/message
+    encoding: UTF-8
 
 
