@@ -24,7 +24,6 @@
         <Root level="info">
             <AppenderRef ref="console" />
         </Root>
-
         <logger name="com.example.springbootexample" level="debug"></logger>
     </Loggers>
 
