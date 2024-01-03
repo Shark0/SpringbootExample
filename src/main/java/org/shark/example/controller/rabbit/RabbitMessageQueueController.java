@@ -1,4 +1,4 @@
-package org.shark.example.controller;
+package org.shark.example.controller.rabbit;
 
 import org.shark.example.service.base.pojo.ResponseDto;
 import org.shark.example.service.messageQueue.SendMessageQueueService;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/message")
 @Slf4j
-public class MessageQueueController {
+public class RabbitMessageQueueController {
 
     private final Gson gson = new Gson();
     private final SendMessageQueueService sendMessageQueueService;

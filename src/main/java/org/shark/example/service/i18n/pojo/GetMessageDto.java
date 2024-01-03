@@ -1,4 +1,4 @@
-package org.shark.example.service.message.pojo;
+package org.shark.example.service.i18n.pojo;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package org.shark.example.controller;
+package org.shark.example.controller.quartz;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

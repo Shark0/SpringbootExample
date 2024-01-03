@@ -3,14 +3,13 @@ version: '1'
 services:
   rabbitmq_example:
     image: rabbitmq:management
-    container_name: rabbit_mq_example
+    container_name: example_rabbit_mq
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
     ports:
       - "5672:5672"
       - "15672:15672"
-
   mysql_example:
     image: mysql:8
     container_name: example_mysql
@@ -23,3 +22,8 @@ services:
       TZ: Asia/Hong_Kong
     ports:
       - "3306:3306"
+  redis_example:
+    image: redis:latest
+    container_name: example_redis
+    ports:
+      - "6379:6379"
