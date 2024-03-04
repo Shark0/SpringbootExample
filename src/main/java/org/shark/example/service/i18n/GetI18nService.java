@@ -18,6 +18,8 @@ public class GetI18nService {
     public ResponseDto<String> start(String value1, Integer value2) {
         log.info("Locale.getDefault() = {}", Locale.getDefault().toString());
         return ResponseDto.<String>builder().data(
-                messageSource.getMessage("message1", new Object[]{value1, value2}, Locale.getDefault())).build();
+                messageSource.getMessage("message1", new Object[]{value1, value2}, Locale.getDefault()))
+                .status(true)
+                .build();
     }
 }

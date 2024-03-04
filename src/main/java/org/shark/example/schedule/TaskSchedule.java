@@ -29,7 +29,6 @@ public class TaskSchedule {
         }
         taskDo.setStatus(1);
         taskRepository.save(taskDo);
-
         WorkHistoryDo workHistoryDo = new WorkHistoryDo();
         workHistoryDo.setTaskId(taskDo.getId());
         workHistoryRepository.save(workHistoryDo);

@@ -24,6 +24,7 @@ public class DeleteJobService {
             throw new RuntimeException(e);
         }
 
-        return ResponseDto.<Void>builder().status(1).build();
+        return ResponseDto.<Void>builder()
+                .status(true).build();
     }
 }

@@ -23,25 +23,25 @@ public class RedisController {
     public ResponseDto<Void> setStringOptKey(
             @RequestBody SetStringOptRedisKeyDto setStringOptRedisKeyDto) {
         stringRedisTemplate.opsForValue().set(setStringOptRedisKeyDto.getKey(), setStringOptRedisKeyDto.getValue());
-        return ResponseDto.<Void>builder().status(1).build();
+        return ResponseDto.<Void>builder().status(true).build();
     }
 
-    @PostMapping("/string-opt-value/{key}")
+    @GetMapping("/string-opt-value/{key}")
     public ResponseDto<String> getStringOptValue(@PathVariable String key) {
         String value = stringRedisTemplate.opsForValue().get(key);
-        return ResponseDto.<String>builder().data(value).status(1).build();
+        return ResponseDto.<String>builder().data(value).status(true).build();
     }
 
     @PostMapping("/object-opt-value")
     public ResponseDto<Void> setObjectOptKey(
             @RequestBody SetObjectOptRedisKeyDto setObjectOptRedisKeyDto) {
         redisTemplate.opsForValue().set(setObjectOptRedisKeyDto.getKey(), setObjectOptRedisKeyDto.getValue());
-        return ResponseDto.<Void>builder().status(1).build();
+        return ResponseDto.<Void>builder().status(true).build();
     }
 
-    @PostMapping("/object-opt-value/{key}")
+    @GetMapping("/object-opt-value/{key}")
     public ResponseDto<Object> getObjectOptValue(@PathVariable String key) {
         Object value = redisTemplate.opsForValue().get(key);
-        return ResponseDto.builder().data(value).status(1).build();
+        return ResponseDto.builder().data(value).status(true).build();
     }
 }

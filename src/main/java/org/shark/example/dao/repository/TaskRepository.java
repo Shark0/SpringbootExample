@@ -10,7 +10,6 @@ public interface TaskRepository extends JpaRepository<TaskDo, Integer> {
 
     TaskDo findByCheckId(String uuid);
 
-
     @Transactional
     @Modifying
     @Query(value = "UPDATE TASK SET CHECK_ID = :checkId WHERE STATUS = 0 AND CHECK_ID is null limit 1", nativeQuery = true)

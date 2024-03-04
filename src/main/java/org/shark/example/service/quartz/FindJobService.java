@@ -47,6 +47,6 @@ public class FindJobService {
             throw new RuntimeException(e);
         }
 
-        return ResponseDto.<List<JobDto>>builder().status(1).build();
+        return ResponseDto.<List<JobDto>>builder().status(true).build();
     }
 }

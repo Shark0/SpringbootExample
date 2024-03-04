@@ -1,8 +1,7 @@
 package org.shark.example.dao.repository.pojo;
 
 import lombok.Data;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "TASK")

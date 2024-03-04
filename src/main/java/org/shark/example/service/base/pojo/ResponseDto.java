@@ -6,7 +6,7 @@ import lombok.Data;
 @Builder
 @Data
 public class ResponseDto<ResultData> {
-    private int status;
+    private Boolean status;
     private ResultData data;
     private String errorMessage;
 }

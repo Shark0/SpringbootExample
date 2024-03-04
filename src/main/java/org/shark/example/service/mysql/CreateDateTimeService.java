@@ -20,6 +20,7 @@ public class CreateDateTimeService {
         timeExampleDo.setDescription(createDateTimeDto.getDescription());
         timeExampleDo.setCreateTime(Instant.now());
         timeExampleDo = timeExampleRepository.save(timeExampleDo);
-        return ResponseDto.<TimeExampleDo>builder().status(1).data(timeExampleDo).build();
+        return ResponseDto.<TimeExampleDo>builder().data(timeExampleDo)
+                .status(true).build();
     }
 }

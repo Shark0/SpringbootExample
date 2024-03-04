@@ -8,9 +8,8 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class RabbitMqListener {
-
-//    @RabbitListener(queues = {"369NewMsg"}, containerFactory = "exampleContainerFactory")
-//    public void receiveMsg(Object object) {
+//    @RabbitListener(queues = {"example"}, containerFactory = "exampleContainerFactory")
+//    public void receiveMessage(Object object) {
 //        log.info("message: {}", new Gson().toJson(object));
 //    }
 }

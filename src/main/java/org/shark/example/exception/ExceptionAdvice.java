@@ -18,6 +18,6 @@ public class ExceptionAdvice {
         result.put("result", "fail");
         result.put("message", e.getMessage());
         log.error(e.getMessage(), e);
-        return ResponseDto.<Void>builder().status(-1).errorMessage(e.getMessage()).build();
+        return ResponseDto.<Void>builder().status(false).errorMessage(e.getMessage()).build();
     }
 }

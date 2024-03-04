@@ -1,8 +1,11 @@
 package org.shark.example.dao.repository.pojo;
 
 import java.time.Instant;
+
+
+import jakarta.persistence.*;
 import lombok.Data;
-import javax.persistence.*;
+
 
 @Entity
 @Table(name = "TIME_EXAMPLE")
