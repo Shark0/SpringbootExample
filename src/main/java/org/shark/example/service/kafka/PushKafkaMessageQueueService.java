@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class SendKafkaMessageQueueService {
+public class PushKafkaMessageQueueService {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
