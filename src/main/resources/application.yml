@@ -63,3 +63,11 @@ spring:
   messages:
     basename: i18n/message
     encoding: UTF-8
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+    producer:
+      bootstrap-servers: localhost:9092
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer

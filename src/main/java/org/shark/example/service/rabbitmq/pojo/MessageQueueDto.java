@@ -1,4 +1,4 @@
-package org.shark.example.service.messageQueue.pojo;
+package org.shark.example.service.rabbitmq.pojo;
 
 import lombok.Data;
 

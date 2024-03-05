@@ -52,6 +52,28 @@ public class SwaggerConfig {
                 .build();
     }
 
+    @Bean
+    GroupedOpenApi rabbitMqExampleApis() {
+        return GroupedOpenApi.builder()
+                .group("rabbit-mq-example-apis")
+                .displayName("RabbitMQ Example Apis")
+                .packagesToScan("org.shark.example.controller.rabbit")
+                .addOpenApiCustomizer(openApi ->
+                        openApi.info(info("RabbitMQ Example APIS", "RabbitMQ Example APIS")))
+                .build();
+    }
+
+    @Bean
+    GroupedOpenApi kafkaExampleApis() {
+        return GroupedOpenApi.builder()
+                .group("kafka-example-apis")
+                .displayName("Kafka Example Apis")
+                .packagesToScan("org.shark.example.controller.kafka")
+                .addOpenApiCustomizer(openApi ->
+                        openApi.info(info("Kafka Example APIS", "Kafka Example APIS")))
+                .build();
+    }
+
     private Info info(String title, String description) {
         return new Info()
                 .title(title)

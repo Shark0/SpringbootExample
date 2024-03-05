@@ -1,9 +1,9 @@
-package org.shark.example.service.messageQueue;
+package org.shark.example.service.rabbitmq;
 
 import jakarta.annotation.Resource;
 import org.shark.example.service.base.pojo.ResponseDto;
-import org.shark.example.service.messageQueue.pojo.MessageQueueDto;
-import org.shark.example.service.messageQueue.pojo.MessageQueueInputDto;
+import org.shark.example.service.rabbitmq.pojo.MessageQueueDto;
+import org.shark.example.service.rabbitmq.pojo.MessageQueueInputDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
-public class SendMessageQueueService {
+public class SendRabbitMessageQueueService {
     @Resource(name = "exampleRabbitTemplate")
     private RabbitTemplate rabbitTemplate;
 
