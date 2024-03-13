@@ -13,6 +13,7 @@ public class KafkaTopicListener {
 
     @KafkaListener(topics = {"message_topic"}, groupId = "1", batch = "true")
     public void messageTopicListener(List<String> messageList) {
+        log.info("messageList.size() = {}", messageList.size());
         for (String message : messageList) {
             log.info("message = {}", message);
         }
