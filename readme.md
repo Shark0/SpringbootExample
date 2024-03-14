@@ -5,7 +5,3 @@
 * Find <ins>Add a new queue</ins> input area
 * Input queue name <ins>example</ins>
 * Click <ins>Add queue</ins> button
-
-## QUARTZ
-* https://segmentfault.com/a/1190000042250871
-* https://www.jianshu.com/p/e0ed8877f98c

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/message")
+@RequestMapping("/rabbit-mq")
 @Slf4j
 public class RabbitMessageQueueController {
     private final SendRabbitMessageQueueService sendRabbitMessageQueueService;

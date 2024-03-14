@@ -1,4 +1,4 @@
-package org.shark.example.rabbitMq;
+package org.shark.example.service.rabbitmq;
 
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
