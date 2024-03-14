@@ -1,11 +1,5 @@
 server:
   port: 8081
-example:
-  rabbitmq:
-    host: localhost:5672
-    port: 5672
-    username: guest
-    password: guest
 spring:
   redis:
     jedis:
@@ -18,56 +12,3 @@ spring:
           max-wait: -1ms
           max-idle: 8
           min-idle: 0
-  jpa:
-    ddl-auto: none
-    hibernate:
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    database-platform: org.hibernate.dialect.MySQLDialect
-    open-in-view: false
-  datasource:
-    url: jdbc:mysql://localhost:3306/example?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  flyway:
-    enabled: true
-    baseline-on-migrate: true
-    clean-on-validation-error: false
-    sql-migration-prefix: V
-    sql-migration-suffixes: .sql
-    locations: classpath:db/migration
-  quartz:
-    jdbc:
-      initialize-schema: always
-    job-store-type: jdbc
-    wait-for-jobs-to-complete-on-shutdown: true
-    overwrite-existing-jobs: true
-    properties:
-      org:
-        scheduler:
-          instanceName: ClusterQuartz
-          instanceId: AUTO
-        jobStore:
-          class: org.quartz.impl.jdbcjobstore.JobStoreTX
-          driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
-          tablePrefix: QRTZ_
-          isClustered: true
-          clusterCheckinInterval: 10000
-          useProperties: false
-        threadPool:
-          class: org.quartz.simpl.SimpleThreadPool
-          threadCount: 10
-          threadPriority: 5
-          threadsInheritContextClassLoaderOfInitializingThread: true
-  messages:
-    basename: i18n/message
-    encoding: UTF-8
-  kafka:
-    consumer:
-      bootstrap-servers: localhost:9092
-      auto-offset-reset: earliest
-      enable-auto-commit: true
-    producer:
-      bootstrap-servers: localhost:9092
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
