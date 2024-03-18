@@ -2,36 +2,21 @@ package org.shark.example.schedule;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.shark.example.dao.repository.TaskRepository;
-import org.shark.example.dao.repository.WorkHistoryRepository;
-import org.shark.example.dao.repository.pojo.TaskDo;
-import org.shark.example.dao.repository.pojo.WorkHistoryDo;
-import org.springframework.stereotype.Component;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Slf4j
 @RequiredArgsConstructor
 @Component
 public class TaskSchedule {
 
-    private final TaskRepository taskRepository;
-    private final WorkHistoryRepository workHistoryRepository;
 
     @Scheduled(initialDelay = 1, fixedRate = 1)
     public void doTask() {
-        String checkId = UUID.randomUUID().toString();
-        taskRepository.updateCheckId(checkId);
-        TaskDo taskDo = taskRepository.findByCheckId(checkId);
-        if(taskDo == null) {
-            return;
-        }
-        taskDo.setStatus(1);
-        taskRepository.save(taskDo);
-        WorkHistoryDo workHistoryDo = new WorkHistoryDo();
-        workHistoryDo.setTaskId(taskDo.getId());
-        workHistoryRepository.save(workHistoryDo);
+        log.info("start time: " + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
     }
 
 

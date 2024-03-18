@@ -1,4 +1,4 @@
-package org.shark.example.asyncTask;
+package org.shark.example.service.base.async;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
