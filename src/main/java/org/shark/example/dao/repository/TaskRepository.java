@@ -8,10 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface TaskRepository extends JpaRepository<TaskDo, Integer> {
 
-    TaskDo findByCheckId(String uuid);
+    TaskDo findByWorkId(String workId);
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE TASK SET CHECK_ID = :checkId WHERE STATUS = 0 AND CHECK_ID is null limit 1", nativeQuery = true)
-    void updateCheckId(String checkId);
+    @Query(value = "UPDATE TASK SET WORK_ID = :workId WHERE STATUS = 0 AND WORK_ID is null limit 1", nativeQuery = true)
+    void updateWorkId(String workId);
 }

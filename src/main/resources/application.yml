@@ -1,25 +1,7 @@
 server:
   port: 8081
-example:
-  rabbitmq:
-    host: localhost:5672
-    port: 5672
-    username: guest
-    password: guest
 spring:
-  redis:
-    jedis:
-      database: 0
-      host: localhost
-      port: 6379
-      lettuce:
-        pool:
-          max-active: 8
-          max-wait: -1ms
-          max-idle: 8
-          min-idle: 0
   jpa:
-    ddl-auto: none
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
@@ -51,7 +33,7 @@ spring:
         jobStore:
           class: org.quartz.impl.jdbcjobstore.JobStoreTX
           driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
-          tablePrefix: QRTZ_
+          tablePrefix: QUARTZ_
           isClustered: true
           clusterCheckinInterval: 10000
           useProperties: false
@@ -60,14 +42,3 @@ spring:
           threadCount: 10
           threadPriority: 5
           threadsInheritContextClassLoaderOfInitializingThread: true
-  messages:
-    basename: i18n/message
-    encoding: UTF-8
-  kafka:
-    consumer:
-      bootstrap-servers: localhost:9092
-      auto-offset-reset: earliest
-      enable-auto-commit: true
-    producer:
-      bootstrap-servers: localhost:9092
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer

@@ -1,14 +1,5 @@
 version: '1'
 services:
-  rabbitmq_example:
-    image: rabbitmq:management
-    container_name: example_rabbit_mq
-    environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
-    ports:
-      - "5672:5672"
-      - "15672:15672"
   mysql_example:
     image: mysql:8
     container_name: example_mysql
@@ -21,37 +12,3 @@ services:
       TZ: Asia/Hong_Kong
     ports:
       - "3306:3306"
-  redis_example:
-    image: redis:latest
-    container_name: example_redis
-    ports:
-      - "6379:6379"
-  zookeeper_example:
-    image: wurstmeister/zookeeper
-    container_name: example_zookeeper
-    ports:
-      - "2181:2181"
-    networks:
-      - kafka-example-network
-  kafka_example:
-    image: wurstmeister/kafka
-    container_name: example_kafka
-    depends_on:
-      - zookeeper_example
-    ports:
-      - "9092:9092"
-      - "9093:9093"
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper_example:2181
-      KAFKA_ADVERTISED_LISTENERS: INSIDE://localhost:9092,OUTSIDE://localhost:9093
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
-      KAFKA_LISTENERS: INSIDE://0.0.0.0:9092,OUTSIDE://0.0.0.0:9093
-      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    networks:
-      - kafka-example-network
-networks:
-  kafka-example-network:
-    driver: bridge
-

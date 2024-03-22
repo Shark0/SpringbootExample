@@ -3,6 +3,6 @@ package org.shark.example.service.mysql.pojo;
 import lombok.Data;
 
 @Data
-public class CreateDateTimeDto {
-    private String description;
+public class CreateTaskDto {
+    private String name;
 }
