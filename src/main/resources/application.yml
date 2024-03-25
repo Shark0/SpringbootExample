@@ -8,7 +8,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQLDialect
     open-in-view: false
   datasource:
-    url: jdbc:mysql://localhost:3306/example?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/example?useSSL=false&serverTimezone=UTC&connectionTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver

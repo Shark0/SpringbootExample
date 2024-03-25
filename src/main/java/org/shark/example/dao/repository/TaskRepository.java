@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public interface TaskRepository extends JpaRepository<TaskDo, Integer> {
 
     TaskDo findByWorkId(String workId);
@@ -14,4 +16,7 @@ public interface TaskRepository extends JpaRepository<TaskDo, Integer> {
     @Modifying
     @Query(value = "UPDATE TASK SET WORK_ID = :workId WHERE STATUS = 0 AND WORK_ID is null limit 1", nativeQuery = true)
     void updateWorkId(String workId);
+
+    @Query(value = "select * from TASK order by id desc limit :size offset :offset", nativeQuery = true)
+    List<TaskDo> findByPage(Integer size, Integer offset);
 }

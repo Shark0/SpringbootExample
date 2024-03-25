@@ -1,9 +1,12 @@
 package org.shark.example.dao.repository.pojo;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.shark.example.config.jackson.InstantToMillisecondsSerializer;
 
 import java.time.Instant;
 
@@ -26,6 +29,7 @@ public class TaskHistoryDo {
     @Column(name = "STATUS")
     private Integer status;
 
+    @JsonSerialize(using = InstantToMillisecondsSerializer.class)
     @CreationTimestamp
     @Column(name = "CREATE_TIME", nullable = false, updatable = false)
     private Instant createTime;
