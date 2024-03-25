@@ -35,6 +35,6 @@ public class TaskDo {
 
     @JsonSerialize(using = InstantToMillisecondsSerializer.class)
     @UpdateTimestamp
-    @Column(name = "UPDATE_TIME", nullable = false, updatable = false)
+    @Column(name = "UPDATE_TIME", nullable = false)
     private Instant updateTime;
 }
