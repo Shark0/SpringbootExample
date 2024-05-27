@@ -19,6 +19,17 @@ public class SwaggerConfig {
                 .build();
     }
 
+    @Bean
+    GroupedOpenApi mapstructExampleApis() {
+        return GroupedOpenApi.builder()
+                .group("mapstruct-example-apis")
+                .displayName("Map Struct Example Apis")
+                .packagesToScan("org.shark.example.controller.mapstruct")
+                .addOpenApiCustomizer(openApi ->
+                        openApi.info(info("Mapstruct Example APIS", "Mapstruct Example APIS")))
+                .build();
+    }
+
     private Info info(String title, String description) {
         return new Info()
                 .title(title)
