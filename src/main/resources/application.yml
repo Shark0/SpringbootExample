@@ -4,3 +4,8 @@ spring:
   messages:
     basename: i18n/message
     encoding: UTF-8
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 32MB
+      max-file-size: 32MB

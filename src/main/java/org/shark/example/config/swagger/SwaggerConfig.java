@@ -19,6 +19,17 @@ public class SwaggerConfig {
                 .build();
     }
 
+    @Bean
+    GroupedOpenApi fileExampleApis() {
+        return GroupedOpenApi.builder()
+                .group("file-example-apis")
+                .displayName("File Example Apis")
+                .packagesToScan("org.shark.example.controller.file")
+                .addOpenApiCustomizer(openApi ->
+                        openApi.info(info("File APIS", "File APIS")))
+                .build();
+    }
+
     private Info info(String title, String description) {
         return new Info()
                 .title(title)
