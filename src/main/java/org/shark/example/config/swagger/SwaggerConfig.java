@@ -19,6 +19,17 @@ public class SwaggerConfig {
                 .build();
     }
 
+    @Bean
+    GroupedOpenApi tokenBucketExampleApis() {
+        return GroupedOpenApi.builder()
+                .group("token-bucket-example-apis")
+                .displayName("Token Bucket Example Apis")
+                .packagesToScan("org.shark.example.controller.bucket")
+                .addOpenApiCustomizer(openApi ->
+                        openApi.info(info("Token Bucket Example APIS", "Token Bucket Example APIS")))
+                .build();
+    }
+
     private Info info(String title, String description) {
         return new Info()
                 .title(title)
