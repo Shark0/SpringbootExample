@@ -1,6 +1,44 @@
 server:
-  port: 8081
+  port: 8080
 spring:
+  main:
+    web-application-type: reactive
   messages:
     basename: i18n/message
     encoding: UTF-8
+  data:
+    redis:
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+      host: 127.0.0.1
+      port: 6379
+      password: ""
+  cloud:
+    gateway:
+      routes:
+        - id: chit-chat-hktv
+          uri: https://group-chat-hktv-api-dev.hkmpcl.com.hk/
+          predicates:
+            - Path=/chitchat/hktv/**
+          filters:
+            - StripPrefix=2
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
+                key-resolver: "#{@headerKeyResolver}"
+        - id: chit-chat-everuts
+          uri: https://group-chat-everuts-api-dev.hkmpcl.com.hk/api/admin/system/cloud-setting
+          predicates:
+            - Path=/chitchat/everuts/**
+          filters:
+            - StripPrefix=2
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 5
+                key-resolver: "#{@ipKeyResolver}"
+      enabled: true
