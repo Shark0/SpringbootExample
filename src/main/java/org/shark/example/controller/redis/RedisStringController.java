@@ -2,37 +2,34 @@ package org.shark.example.controller.redis;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.shark.example.controller.redis.pojo.SetObjectOptRedisKeyDto;
-import org.shark.example.controller.redis.pojo.SetStringOptRedisKeyDto;
+import org.shark.example.controller.redis.pojo.KeyObjectDto;
+import org.shark.example.controller.redis.pojo.KeyStringDto;
 import org.shark.example.service.base.pojo.ResponseDto;
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.redis.core.RedisOperations;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.SessionCallback;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.*;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/redis")
+@RequestMapping("/redis/string")
 @Slf4j
-public class RedisController {
+public class RedisStringController {
 
     private final StringRedisTemplate stringRedisTemplate;
 
     private final RedisTemplate<String, Object> redisTemplate;
 
-    @PostMapping("/string-opt-value")
+    @PostMapping("/key/string")
     public ResponseDto<Void> setStringOptKey(
-            @RequestBody SetStringOptRedisKeyDto setStringOptRedisKeyDto) {
+            @RequestBody KeyStringDto setStringOptRedisKeyDto) {
 
         stringRedisTemplate.opsForValue().set(setStringOptRedisKeyDto.getKey(), setStringOptRedisKeyDto.getValue());
         return ResponseDto.<Void>builder().status(true).build();
     }
 
-    @PostMapping("/string-opt-value-watch")
+    @PostMapping("/key/string/watch")
     public ResponseDto<Void> setStringOptKeyByWatch(
-            @RequestBody SetStringOptRedisKeyDto setStringOptRedisKeyDto) {
+            @RequestBody KeyStringDto setStringOptRedisKeyDto) {
 
         stringRedisTemplate.execute(new SessionCallback<>() {
             @Override
@@ -55,22 +52,36 @@ public class RedisController {
     }
 
 
-    @GetMapping("/string-opt-value/{key}")
+    @GetMapping("/key/{key}/value")
     public ResponseDto<String> getStringOptValue(@PathVariable String key) {
         String value = stringRedisTemplate.opsForValue().get(key);
         return ResponseDto.<String>builder().data(value).status(true).build();
     }
 
-    @PostMapping("/object-opt-value")
+    @PostMapping("/key/object")
     public ResponseDto<Void> setObjectOptKey(
-            @RequestBody SetObjectOptRedisKeyDto setObjectOptRedisKeyDto) {
-        redisTemplate.opsForValue().set(setObjectOptRedisKeyDto.getKey(), setObjectOptRedisKeyDto.getValue());
+            @RequestBody KeyObjectDto keyObjectDto) {
+        redisTemplate.opsForValue().set(keyObjectDto.getKey(), keyObjectDto.getValue());
         return ResponseDto.<Void>builder().status(true).build();
     }
 
-    @GetMapping("/object-opt-value/{key}")
-    public ResponseDto<Object> getObjectOptValue(@PathVariable String key) {
+    @GetMapping("/key/{key}/object")
+    public ResponseDto<Object> getObjectValue(@PathVariable String key) {
         Object value = redisTemplate.opsForValue().get(key);
         return ResponseDto.builder().data(value).status(true).build();
+    }
+
+    @PutMapping("/incr/key/{key}")
+    public ResponseDto<Long> incrValue(@PathVariable String key) {
+        ValueOperations<String, Object> operations = redisTemplate.opsForValue();
+        Long newValue = operations.increment(key, 1);
+        return ResponseDto.<Long>builder().data(newValue).status(true).build();
+    }
+
+    @PutMapping("/decr/key/{key}")
+    public ResponseDto<Long> decrValue(@PathVariable String key) {
+        ValueOperations<String, Object> operations = redisTemplate.opsForValue();
+        Long newValue = operations.decrement(key, 1);
+        return ResponseDto.<Long>builder().data(newValue).status(true).build();
     }
 }

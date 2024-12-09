@@ -2,8 +2,10 @@ package org.shark.example.controller.redis.pojo;
 
 import lombok.Data;
 
+import java.util.Map;
+
 @Data
-public class SetStringOptRedisKeyDto {
+public class KeyHashDto {
     private String key;
-    private String value;
+    private Map<String, String> value;
 }
