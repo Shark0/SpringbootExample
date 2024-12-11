@@ -13,9 +13,9 @@ public class SwaggerConfig {
         return GroupedOpenApi.builder()
                 .group("i18n-example-apis")
                 .displayName("Multi Language Example Apis")
-                .packagesToScan("org.shark.example.controller.i18n")
+                .packagesToScan("org.shark.example.controller")
                 .addOpenApiCustomizer(openApi ->
-                        openApi.info(info("Multi Language Example APIS", "Multi Language Example APIS")))
+                        openApi.info(info("Cassandra Example APIS", "Cassandra Example APIS")))
                 .build();
     }
 
