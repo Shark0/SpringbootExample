@@ -11,8 +11,8 @@ public class SwaggerConfig {
     @Bean
     GroupedOpenApi multiLanguageExampleApis() {
         return GroupedOpenApi.builder()
-                .group("i18n-example-apis")
-                .displayName("Multi Language Example Apis")
+                .group("scylla-apis")
+                .displayName("Scylla Apis")
                 .packagesToScan("org.shark.example.controller")
                 .addOpenApiCustomizer(openApi ->
                         openApi.info(info("Cassandra Example APIS", "Cassandra Example APIS")))

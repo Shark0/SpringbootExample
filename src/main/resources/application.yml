@@ -6,8 +6,6 @@ spring:
     encoding: UTF-8
   cassandra:
     schema-action: CREATE_IF_NOT_EXISTS
-    password: admin
-    username: admin
     keyspace-name: example
     contact-points: 127.0.0.1
     local-datacenter: datacenter1
