@@ -2,7 +2,6 @@ package org.shark.example.service.cassandra;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.shark.example.datasource.cassandra.MessageRepository;
 import org.shark.example.datasource.cassandra.pojo.MessageDo;
 import org.shark.example.datasource.cassandra.pojo.MessageKeyDo;
 import org.springframework.stereotype.Service;
@@ -15,14 +14,15 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class SaveMessageService {
+public class SaveMessageByAsncService {
 
-    private final MessageRepository messageRepository;
+    private final SaveMessageTask saveMessageTask;
 
     public void saveMessage() {
         long userCount = 100;
         long messageCount = 100;
-
+        List<CompletableFuture<Boolean>> resultList = new ArrayList<>();
+        long startTime = System.currentTimeMillis();
         List<MessageDo> messageList = new ArrayList<>();
         for (long i = 0; i < userCount; i++) {
             for (long j = 0; j < messageCount; j++) {
@@ -34,10 +34,13 @@ public class SaveMessageService {
                 messageDo.setMessageKey(messageKeyDo);
                 messageDo.setTime(new Date());
                 messageList.add(messageDo);
+                if(messageList.size() == 100){
+                    resultList.add(saveMessageTask.start(messageList));
+                    messageList = new ArrayList<>();
+                }
             }
         }
-        long startTime = System.currentTimeMillis();
-        messageRepository.saveAll(messageList);
+        CompletableFuture.allOf(resultList.toArray(new CompletableFuture[0])).join();
         long endTime = System.currentTimeMillis();
         log.info("total save time: {} ms", (endTime - startTime));
     }
