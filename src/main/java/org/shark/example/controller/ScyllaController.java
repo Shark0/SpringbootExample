@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.shark.example.datasource.cassandra.pojo.MessageDo;
 import org.shark.example.service.base.pojo.ResponseDto;
 import org.shark.example.service.cassandra.GetMessageListService;
-import org.shark.example.service.cassandra.SaveMessageByAsncService;
+import org.shark.example.service.cassandra.SaveMessageByAsyncService;
 import org.shark.example.service.cassandra.SaveMessageService;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,11 +22,11 @@ public class ScyllaController {
         return ResponseDto.<Void>builder().status(true).build();
     }
 
-    private final SaveMessageByAsncService saveMessageByAsncService;
+    private final SaveMessageByAsyncService saveMessageByAsyncService;
 
     @PostMapping("async")
     public ResponseDto<Void> saveMessageAsync() {
-        saveMessageByAsncService.saveMessage();
+        saveMessageByAsyncService.saveMessage();
         return ResponseDto.<Void>builder().status(true).build();
     }
 

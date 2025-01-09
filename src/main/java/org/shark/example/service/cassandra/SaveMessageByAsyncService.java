@@ -14,13 +14,13 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class SaveMessageByAsncService {
+public class SaveMessageByAsyncService {
 
     private final SaveMessageTask saveMessageTask;
 
     public void saveMessage() {
-        long userCount = 100;
-        long messageCount = 100;
+        long userCount = 10000;
+        long messageCount = 1;
         List<CompletableFuture<Boolean>> resultList = new ArrayList<>();
         long startTime = System.currentTimeMillis();
         List<MessageDo> messageList = new ArrayList<>();
@@ -34,7 +34,7 @@ public class SaveMessageByAsncService {
                 messageDo.setMessageKey(messageKeyDo);
                 messageDo.setTime(new Date());
                 messageList.add(messageDo);
-                if(messageList.size() == 100){
+                if(messageList.size() == 500){
                     resultList.add(saveMessageTask.start(messageList));
                     messageList = new ArrayList<>();
                 }

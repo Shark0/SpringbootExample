@@ -6,19 +6,10 @@ services:
     container_name: scylla-node1
     ports:
       - "9042:9042"
-    command: --seeds=scylla-node1 --smp 1 --overprovisioned 1 --api-address 0.0.0.0
-    networks:
-      - scylla-net
-  scylla-node2:
-    image: scylladb/scylla:latest
-    container_name: scylla-node2
-    command: --seeds=scylla-node1 --smp 1 --overprovisioned 1 --api-address 0.0.0.0
-    networks:
-      - scylla-net
-  scylla-node3:
-    image: scylladb/scylla:latest
-    container_name: scylla-node3
-    command: --seeds=scylla-node1 --smp 1 --overprovisioned 1 --api-address 0.0.0.0
+      - "9180:9180"
+    environment:
+      - SCYLLA_EXTRA_ARGS=--batch-size-fail-threshold-in-kb 4096
+    command: --seeds=scylla-node1 --smp 1
     networks:
       - scylla-net
 networks:
