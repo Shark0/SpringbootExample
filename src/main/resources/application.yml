@@ -1,6 +1,16 @@
 server:
   port: 8081
+
 spring:
-  messages:
-    basename: i18n/message
-    encoding: UTF-8
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    database-platform: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/example?useSSL=false&serverTimezone=UTC&connectionTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
