@@ -19,6 +19,17 @@ public class SwaggerConfig {
                 .build();
     }
 
+    @Bean
+    GroupedOpenApi permissionExampleApis() {
+        return GroupedOpenApi.builder()
+                .group("permission-example-apis")
+                .displayName("Permission Example Apis")
+                .packagesToScan("org.shark.example.controller.permission")
+                .addOpenApiCustomizer(openApi ->
+                        openApi.info(info("Permission Example APIS", "Permission Example APIS")))
+                .build();
+    }
+
     private Info info(String title, String description) {
         return new Info()
                 .title(title)

@@ -17,6 +17,7 @@ public class I18nController {
 
     private final GetI18nService getI18nService;
 
+
     @GetMapping
     public ResponseDto<String> getMessage(@RequestParam String value1, @RequestParam Integer value2) {
         return getI18nService.start(value1, value2);
