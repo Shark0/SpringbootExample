@@ -20,6 +20,17 @@ public class SwaggerConfig {
     }
 
     @Bean
+    GroupedOpenApi userExampleApis() {
+        return GroupedOpenApi.builder()
+                .group("user-example-apis")
+                .displayName("User Example Apis")
+                .packagesToScan("org.shark.example.domain.user.inbound.web")
+                .addOpenApiCustomizer(openApi ->
+                        openApi.info(info("User Example APIS", "User Example APIS")))
+                .build();
+    }
+
+    @Bean
     GroupedOpenApi jobExampleApis() {
         return GroupedOpenApi.builder()
                 .group("job-example-apis")
