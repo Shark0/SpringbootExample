@@ -1,6 +1,6 @@
 package org.shark.example.exception;
 
-import org.shark.example.service.base.pojo.ResponseDto;
+import org.shark.example.service.pojo.ResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

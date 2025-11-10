@@ -1,6 +1,11 @@
 server:
   port: 8081
 spring:
-  messages:
-    basename: i18n/message
-    encoding: UTF-8
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: example
+      username: root
+      password: root
+      authentication-database: admin

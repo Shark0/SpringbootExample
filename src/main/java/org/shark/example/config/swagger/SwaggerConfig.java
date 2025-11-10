@@ -11,11 +11,11 @@ public class SwaggerConfig {
     @Bean
     GroupedOpenApi multiLanguageExampleApis() {
         return GroupedOpenApi.builder()
-                .group("i18n-example-apis")
-                .displayName("Multi Language Example Apis")
-                .packagesToScan("org.shark.example.controller.i18n")
+                .group("example-apis")
+                .displayName("Example Apis")
+                .packagesToScan("org.shark.example.controller")
                 .addOpenApiCustomizer(openApi ->
-                        openApi.info(info("Multi Language Example APIS", "Multi Language Example APIS")))
+                        openApi.info(info("Example APIS", "Example APIS")))
                 .build();
     }
 

@@ -1,4 +1,4 @@
-package org.shark.example.service.base.pojo;
+package org.shark.example.service.pojo;
 
 import lombok.Builder;
 import lombok.Data;
